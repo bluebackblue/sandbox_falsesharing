@@ -122,7 +122,12 @@ namespace Simple
 				}
 
 				for(int ii=0;ii<t_workthead.Length;ii++){
-					UnityEngine.Debug.Log(string.Format("padding = 0 : index = {0} : ticks = {1}",ii,t_workthead[ii].stopwatch.ElapsedTicks));
+					UnityEngine.Debug.Log(string.Format("{0} : padding = {1} : index = {2} : ticks = {3}",
+						t_workthead[ii].theradid,
+						0,
+						ii,
+						t_workthead[ii].stopwatch.ElapsedTicks
+					));
 				}
 			}
 
@@ -145,7 +150,12 @@ namespace Simple
 				}
 
 				for(int ii=0;ii<t_workthead.Length;ii++){
-					UnityEngine.Debug.Log(string.Format("padding = 28 : index = {0} : ticks = {1}",ii,t_workthead[ii].stopwatch.ElapsedTicks));
+					UnityEngine.Debug.Log(string.Format("{0} : padding = {1} : index = {2} : ticks = {3}",
+						t_workthead[ii].theradid,
+						28,
+						ii,
+						t_workthead[ii].stopwatch.ElapsedTicks
+					));
 				}
 			}
 
@@ -168,7 +178,12 @@ namespace Simple
 				}
 
 				for(int ii=0;ii<t_workthead.Length;ii++){
-					UnityEngine.Debug.Log(string.Format("padding = 60 : index = {0} : ticks = {1}",ii,t_workthead[ii].stopwatch.ElapsedTicks));
+					UnityEngine.Debug.Log(string.Format("{0} : padding = {1} : index = {2} : ticks = {3}",
+						t_workthead[ii].theradid,
+						60,
+						ii,
+						t_workthead[ii].stopwatch.ElapsedTicks
+					));
 				}
 			}
 
@@ -191,7 +206,12 @@ namespace Simple
 				}
 
 				for(int ii=0;ii<t_workthead.Length;ii++){
-					UnityEngine.Debug.Log(string.Format("padding = 124 : index = {0} : ticks = {1}",ii,t_workthead[ii].stopwatch.ElapsedTicks));
+					UnityEngine.Debug.Log(string.Format("{0} : padding = {1} : index = {2} : ticks = {3}",
+						t_workthead[ii].theradid,
+						124,
+						ii,
+						t_workthead[ii].stopwatch.ElapsedTicks
+					));
 				}
 			}
 		}

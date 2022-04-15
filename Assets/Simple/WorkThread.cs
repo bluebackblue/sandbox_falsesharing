@@ -12,6 +12,10 @@ namespace Simple
 		*/
 		public System.Threading.Thread raw;
 
+		/** theradid
+		*/
+		public int theradid;
+
 		/** 処理時間計測。
 		*/
 		public System.Diagnostics.Stopwatch stopwatch;
@@ -26,6 +30,9 @@ namespace Simple
 		{
 			//raw
 			this.raw = null;
+
+			//theradid
+			this.theradid = 0;
 
 			//stopwatch
 			this.stopwatch = new System.Diagnostics.Stopwatch();
@@ -69,9 +76,15 @@ namespace Simple
 		{
 			WorkThread t_this = (WorkThread)a_param;
 
+			//theradid
+			#pragma warning disable 0618
+			t_this.theradid = System.AppDomain.GetCurrentThreadId();
+			#pragma warning restore
+
 			//計測開始。
 			t_this.stopwatch.Start();
 
+			//実行。
 			t_this.execute.ThreadMain();
 
 			//計測終了。

@@ -11,29 +11,45 @@ namespace Simple
 	{
 		/** スレッド数。
 		*/
-		public const int THREAD_MAX = 4;
+		public const int THREAD_MAX = 8;
 
 		/** ループ数。
 		*/
-		public const int LOOP_MAX = 10000000;
+		public const int LOOP_MAX = 100000000;
 
 		/** ShareDataType
 		*/
 		public class ShareDataType
 		{
-			public int a;
+			public int data1;
 
 			public PADDING pad1;
 
-			public int b;
+			public int data2;
 			
 			public PADDING pad2;
 
-			public int c;
+			public int data3;
 			
 			public PADDING pad3;
 			
-			public int d;
+			public int data4;
+
+			public PADDING pad4;
+			
+			public int data5;
+
+			public PADDING pad5;
+			
+			public int data6;
+
+			public PADDING pad6;
+			
+			public int data7;
+
+			public PADDING pad7;
+			
+			public int data8;
 		}
 
 		/** index
@@ -60,31 +76,67 @@ namespace Simple
 		public void ThreadMain()
 		{
 			int t_index = this.index;
-
-			for(int ii=0;ii<LOOP_MAX;ii++){
-				switch(t_index){
-				case 0:
-					{
-						this.sharedata.a = t_index;
-					}break;
-				case 1:
-					{
-						this.sharedata.b = t_index;
-					}break;
-				case 2:
-					{
-						this.sharedata.c = t_index;
-					}break;
-				case 3:
-					{
-						this.sharedata.d = t_index;
-					}break;
-				default:
-					{
-					}break;
-				}
-
-				System.Threading.Thread.MemoryBarrier();
+			
+			switch(t_index){
+			case 0:
+				{
+					for(int ii=0;ii<LOOP_MAX;ii++){
+						this.sharedata.data1 = t_index;
+						System.Threading.Thread.MemoryBarrier();
+					}
+				}break;
+			case 1:
+				{
+					for(int ii=0;ii<LOOP_MAX;ii++){
+						this.sharedata.data2 = t_index;
+						System.Threading.Thread.MemoryBarrier();
+					}
+				}break;
+			case 2:
+				{
+					for(int ii=0;ii<LOOP_MAX;ii++){
+						this.sharedata.data3 = t_index;
+						System.Threading.Thread.MemoryBarrier();
+					}
+				}break;
+			case 3:
+				{
+					for(int ii=0;ii<LOOP_MAX;ii++){
+						this.sharedata.data4 = t_index;
+						System.Threading.Thread.MemoryBarrier();
+					}
+				}break;
+			case 4:
+				{
+					for(int ii=0;ii<LOOP_MAX;ii++){
+						this.sharedata.data5 = t_index;
+						System.Threading.Thread.MemoryBarrier();
+					}
+				}break;
+			case 5:
+				{
+					for(int ii=0;ii<LOOP_MAX;ii++){
+						this.sharedata.data6 = t_index;
+						System.Threading.Thread.MemoryBarrier();
+					}
+				}break;
+			case 6:
+				{
+					for(int ii=0;ii<LOOP_MAX;ii++){
+						this.sharedata.data7 = t_index;
+						System.Threading.Thread.MemoryBarrier();
+					}
+				}break;
+			case 7:
+				{
+					for(int ii=0;ii<LOOP_MAX;ii++){
+						this.sharedata.data8 = t_index;
+						System.Threading.Thread.MemoryBarrier();
+					}
+				}break;
+			default:
+				{
+				}break;
 			}
 		}
 	}

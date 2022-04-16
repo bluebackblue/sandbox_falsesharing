@@ -1,7 +1,5 @@
 
 
-
-
 /** Simple
 */
 namespace Simple
@@ -100,119 +98,73 @@ namespace Simple
 		*/
 		private void Start()
 		{
-			WorkThread[] t_workthead = new WorkThread[Execute<int>.THREAD_MAX];
-			for(int ii=0;ii<t_workthead.Length;ii++){
-				t_workthead[ii] = new WorkThread();
-			}
+			Log t_log = new Log();
+
+			t_log.stringbuffer.Append("----- padding 0 ----- \n");
+
+			WorkThread[] t_workthread_list = new WorkThread[Execute<int>.THREAD_MAX];
 
 			//パディング０バイト。
 			{
 				Execute<Padding0>.ShareDataType t_sharedata = new Execute<Padding0>.ShareDataType();
-				
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					t_workthead[ii].Initialize(new Execute<Padding0>(ii,t_sharedata));
-				}
-			
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					t_workthead[ii].Start();
+
+				for(int ii=0;ii<t_workthread_list.Length;ii++){
+					t_workthread_list[ii] = new WorkThread(new Execute<Padding0>(ii,t_sharedata,t_log));
 				}
 
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					t_workthead[ii].End();
-				}
-
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					UnityEngine.Debug.Log(string.Format("{0} : padding = {1} : index = {2} : ticks = {3}",
-						t_workthead[ii].theradid,
-						0,
-						ii,
-						t_workthead[ii].stopwatch.ElapsedTicks
-					));
+				for(int ii=0;ii<t_workthread_list.Length;ii++){
+					t_workthread_list[ii].Dispose();
 				}
 			}
 
-			UnityEngine.Debug.Log("-----------");
+			t_log.stringbuffer.Append("----- padding 28 ----- \n");
 
 			//パディング２８バイト。
 			{
 				Execute<Padding28>.ShareDataType t_sharedata = new Execute<Padding28>.ShareDataType();
 
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					t_workthead[ii].Initialize(new Execute<Padding28>(ii,t_sharedata));
-				}
-			
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					t_workthead[ii].Start();
+				for(int ii=0;ii<t_workthread_list.Length;ii++){
+					t_workthread_list[ii] = new WorkThread(new Execute<Padding28>(ii,t_sharedata,t_log));
 				}
 
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					t_workthead[ii].End();
-				}
-
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					UnityEngine.Debug.Log(string.Format("{0} : padding = {1} : index = {2} : ticks = {3}",
-						t_workthead[ii].theradid,
-						28,
-						ii,
-						t_workthead[ii].stopwatch.ElapsedTicks
-					));
+				for(int ii=0;ii<t_workthread_list.Length;ii++){
+					t_workthread_list[ii].Dispose();
 				}
 			}
 
-			UnityEngine.Debug.Log("-----------");
+			t_log.stringbuffer.Append("----- padding 60 ----- \n");
 
 			//パディング６０バイト。
 			{
 				Execute<Padding60>.ShareDataType t_sharedata = new Execute<Padding60>.ShareDataType();
 
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					t_workthead[ii].Initialize(new Execute<Padding60>(ii,t_sharedata));
-				}
-			
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					t_workthead[ii].Start();
+				for(int ii=0;ii<t_workthread_list.Length;ii++){
+					t_workthread_list[ii] = new WorkThread(new Execute<Padding60>(ii,t_sharedata,t_log));
 				}
 
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					t_workthead[ii].End();
-				}
-
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					UnityEngine.Debug.Log(string.Format("{0} : padding = {1} : index = {2} : ticks = {3}",
-						t_workthead[ii].theradid,
-						60,
-						ii,
-						t_workthead[ii].stopwatch.ElapsedTicks
-					));
+				for(int ii=0;ii<t_workthread_list.Length;ii++){
+					t_workthread_list[ii].Dispose();
 				}
 			}
 
-			UnityEngine.Debug.Log("-----------");
+			t_log.stringbuffer.Append("----- padding 124 ----- \n");
 
 			//パディング１２４バイト。
 			{
 				Execute<Padding124>.ShareDataType t_sharedata = new Execute<Padding124>.ShareDataType();
 
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					t_workthead[ii].Initialize(new Execute<Padding124>(ii,t_sharedata));
-				}
-			
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					t_workthead[ii].Start();
+				for(int ii=0;ii<t_workthread_list.Length;ii++){
+					t_workthread_list[ii] = new WorkThread(new Execute<Padding124>(ii,t_sharedata,t_log));
 				}
 
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					t_workthead[ii].End();
+				for(int ii=0;ii<t_workthread_list.Length;ii++){
+					t_workthread_list[ii].Dispose();
 				}
+			}
 
-				for(int ii=0;ii<t_workthead.Length;ii++){
-					UnityEngine.Debug.Log(string.Format("{0} : padding = {1} : index = {2} : ticks = {3}",
-						t_workthead[ii].theradid,
-						124,
-						ii,
-						t_workthead[ii].stopwatch.ElapsedTicks
-					));
-				}
+			{
+				UnityEngine.UI.Text t_text = UnityEngine.GameObject.Find("Text").GetComponent<UnityEngine.UI.Text>();
+				t_text.text = t_log.stringbuffer.ToString();
 			}
 		}
 	}

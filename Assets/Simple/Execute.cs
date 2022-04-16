@@ -60,15 +60,22 @@ namespace Simple
 		*/
 		public ShareDataType sharedata;
 
+		/** log
+		*/
+		public Log log;
+
 		/** constructor
 		*/
-		public Execute(int a_index,ShareDataType a_sharedata)
+		public Execute(int a_index,ShareDataType a_sharedata,Log a_log)
 		{
 			//index
 			this.index = a_index;
 
 			//sharedata
 			this.sharedata = a_sharedata;
+
+			//log
+			this.log = a_log;
 		}
 
 		/** [Simple.WorkThread_Execute_Base]スレッドから呼び出される。
@@ -77,6 +84,8 @@ namespace Simple
 		{
 			int t_index = this.index;
 			
+			long t_ticks = System.DateTime.UtcNow.Ticks;
+
 			switch(t_index){
 			case 0:
 				{
@@ -137,6 +146,12 @@ namespace Simple
 			default:
 				{
 				}break;
+			}
+
+			lock(this.log){
+				if((this.index == 0)||(this.index == 7)){
+					this.log.stringbuffer.Append(string.Format("index = {0} : time = {1}\n",this.index,System.DateTime.UtcNow.Ticks - t_ticks));
+				}
 			}
 		}
 	}

@@ -1,8 +1,8 @@
 
 
-/** Simple
+/** ReadFromOtherThread
 */
-namespace Simple
+namespace ReadFromOtherThread
 {
 	/** WorkThread
 	*/

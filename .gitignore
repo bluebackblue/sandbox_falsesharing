@@ -6,6 +6,7 @@
 /obj
 /Temp
 /Exe
+/Exe_*
 /WebGL
 /*.log
 /*.apk

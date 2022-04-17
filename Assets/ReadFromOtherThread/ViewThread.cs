@@ -32,9 +32,13 @@ namespace ReadFromOtherThread
 		*/
 		public System.UInt64 viewvalue;
 
+		/** coremask
+		*/
+		public System.UInt64 coremask;
+
 		/** constructor
 		*/
-		public ViewThread(ShareData a_sharedata,Log a_log)
+		public ViewThread(ShareData a_sharedata,Log a_log,System.UInt64 a_coremask)
 		{
 			//sharedata
 			this.sharedata = a_sharedata;
@@ -47,6 +51,9 @@ namespace ReadFromOtherThread
 
 			//viewvalue
 			this.viewvalue = 0;
+
+			//coremask
+			this.coremask = a_coremask;
 
 			//raw
 			this.raw = new System.Threading.Thread(Inner_ThreadMain);
@@ -63,11 +70,23 @@ namespace ReadFromOtherThread
 			this.raw = null;
 		}
 
+		/** SetThreadAffinityMask
+		*/
+		[System.Runtime.InteropServices.DllImport("kernel32.dll")]
+		static extern int SetThreadAffinityMask(int hThread,int dwThreadAffinityMask);
+
+		/** SetThreadAffinityMask
+		*/
+		[System.Runtime.InteropServices.DllImport("kernel32.dll")]
+		static extern int GetCurrentThread();
+
 		/** Inner_ThreadMain
 		*/
 		private static void Inner_ThreadMain(object a_param)
 		{
 			ViewThread t_this = (ViewThread)a_param;
+
+			SetThreadAffinityMask(GetCurrentThread(),(int)t_this.coremask);
 
 			ref System.UInt64 t_value = ref t_this.sharedata.value;
 

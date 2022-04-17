@@ -109,7 +109,7 @@ namespace Simple
 				Execute<Padding0>.ShareDataType t_sharedata = new Execute<Padding0>.ShareDataType();
 
 				for(int ii=0;ii<t_workthread_list.Length;ii++){
-					t_workthread_list[ii] = new WorkThread(new Execute<Padding0>(ii,t_sharedata,t_log));
+					t_workthread_list[ii] = new WorkThread(new Execute<Padding0>(ii,t_sharedata,t_log),(0x01|0x01<<1));
 				}
 
 				for(int ii=0;ii<t_workthread_list.Length;ii++){
@@ -124,7 +124,7 @@ namespace Simple
 				Execute<Padding28>.ShareDataType t_sharedata = new Execute<Padding28>.ShareDataType();
 
 				for(int ii=0;ii<t_workthread_list.Length;ii++){
-					t_workthread_list[ii] = new WorkThread(new Execute<Padding28>(ii,t_sharedata,t_log));
+					t_workthread_list[ii] = new WorkThread(new Execute<Padding28>(ii,t_sharedata,t_log),(0x01|0x01<<1));
 				}
 
 				for(int ii=0;ii<t_workthread_list.Length;ii++){
@@ -139,7 +139,7 @@ namespace Simple
 				Execute<Padding60>.ShareDataType t_sharedata = new Execute<Padding60>.ShareDataType();
 
 				for(int ii=0;ii<t_workthread_list.Length;ii++){
-					t_workthread_list[ii] = new WorkThread(new Execute<Padding60>(ii,t_sharedata,t_log));
+					t_workthread_list[ii] = new WorkThread(new Execute<Padding60>(ii,t_sharedata,t_log),(0x01|0x01<<1));
 				}
 
 				for(int ii=0;ii<t_workthread_list.Length;ii++){
@@ -154,7 +154,7 @@ namespace Simple
 				Execute<Padding124>.ShareDataType t_sharedata = new Execute<Padding124>.ShareDataType();
 
 				for(int ii=0;ii<t_workthread_list.Length;ii++){
-					t_workthread_list[ii] = new WorkThread(new Execute<Padding124>(ii,t_sharedata,t_log));
+					t_workthread_list[ii] = new WorkThread(new Execute<Padding124>(ii,t_sharedata,t_log),(0x01|0x01<<1));
 				}
 
 				for(int ii=0;ii<t_workthread_list.Length;ii++){

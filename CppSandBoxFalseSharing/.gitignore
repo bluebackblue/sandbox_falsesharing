@@ -4,4 +4,7 @@
 /Release
 /Release32
 /x64
-*.vcxproj.user
+/*.user
+/*.psess
+/*.vsp
+/*.vspx

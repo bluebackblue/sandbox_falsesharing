@@ -43,28 +43,14 @@ namespace ReadFromOtherThread
 			this.raw = null;
 		}
 
-		#if(UNITY_STANDALONE_WIN)
-
-		/** SetThreadAffinityMask
-		*/
-		[System.Runtime.InteropServices.DllImport("kernel32.dll")]
-		static extern int SetThreadAffinityMask(int hThread,int dwThreadAffinityMask);
-
-		/** SetThreadAffinityMask
-		*/
-		[System.Runtime.InteropServices.DllImport("kernel32.dll")]
-		static extern int GetCurrentThread();
-
-		#endif
-
 		/** Inner_ThreadMain
 		*/
 		private static void Inner_ThreadMain(object a_param)
 		{
 			WorkThread t_this = (WorkThread)a_param;
 
-			#if(UNITY_STANDALONE_WIN)
-			SetThreadAffinityMask(GetCurrentThread(),(int)t_this.coremask);
+			#if((UNITY_STANDALONE_WIN)||(UNITY_EDITOR_WIN))
+			Win_Kernel32.SetThreadAffinityMask(Win_Kernel32.GetCurrentThread(),(int)t_this.coremask);
 			#endif
 
 			t_this.execute.ThreadMain();

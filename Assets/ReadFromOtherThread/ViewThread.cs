@@ -70,23 +70,15 @@ namespace ReadFromOtherThread
 			this.raw = null;
 		}
 
-		/** SetThreadAffinityMask
-		*/
-		[System.Runtime.InteropServices.DllImport("kernel32.dll")]
-		static extern int SetThreadAffinityMask(int hThread,int dwThreadAffinityMask);
-
-		/** SetThreadAffinityMask
-		*/
-		[System.Runtime.InteropServices.DllImport("kernel32.dll")]
-		static extern int GetCurrentThread();
-
 		/** Inner_ThreadMain
 		*/
 		private static void Inner_ThreadMain(object a_param)
 		{
 			ViewThread t_this = (ViewThread)a_param;
 
-			SetThreadAffinityMask(GetCurrentThread(),(int)t_this.coremask);
+			#if((UNITY_STANDALONE_WIN)||(UNITY_EDITOR_WIN))
+			Win_Kernel32.SetThreadAffinityMask(Win_Kernel32.GetCurrentThread(),(int)t_this.coremask);
+			#endif
 
 			ref System.UInt64 t_value = ref t_this.sharedata.value;
 

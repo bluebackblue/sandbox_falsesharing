@@ -149,8 +149,14 @@ namespace Simple
 			}
 
 			lock(this.log){
-				if((this.index == 0)||(this.index == 7)){
+				switch(this.index){
+				case 0:
+				case 1:
+				case 6:
+				case 7:
+					{
 					this.log.stringbuffer.Append(string.Format("index = {0} : time = {1}\n",this.index,System.DateTime.UtcNow.Ticks - t_ticks));
+					}break;
 				}
 			}
 		}
